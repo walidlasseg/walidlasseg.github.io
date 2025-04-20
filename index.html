@@ -85,6 +85,8 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            object-fit: cover;
+
         }
 
         .maintenance-image img {
@@ -213,31 +215,6 @@
         
         <p>We're currently working on improving our website to serve you better. Please check back soon!</p>
         
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        
-        <div class="countdown" id="countdown">
-            <div class="countdown-item">
-                <div class="countdown-value" id="days">00</div>
-                <div class="countdown-label">Days</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="seconds">00</div>
-                <div class="countdown-label">Seconds</div>
-            </div>
-        </div>
-        
-        <p>Estimated completion time: <strong id="completionTime"></strong></p>
-        
         <a href="mailto:contact@walidlasseg.com" class="contact-link">Contact Me</a>
         
         <div class="social-links">
@@ -251,67 +228,5 @@
     <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
-    <script>
-        // JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set the date we're counting down to (24 hours from now)
-            const countDownDate = new Date();
-            countDownDate.setHours(countDownDate.getHours() + 24);
-            
-            // Display the estimated completion time
-            const completionTimeElement = document.getElementById('completionTime');
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            completionTimeElement.textContent = countDownDate.toLocaleDateString('en-US', options);
-            
-            // Update the countdown every 1 second
-            const countdownFunction = setInterval(function() {
-                // Get today's date and time
-                const now = new Date().getTime();
-                
-                // Find the distance between now and the count down date
-                const distance = countDownDate - now;
-                
-                // Time calculations for days, hours, minutes and seconds
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                // Output the result in the corresponding elements
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                
-                // Update progress bar (24 hours total)
-                const progressPercentage = 100 - Math.floor((distance / (1000 * 60 * 60 * 24)) * 100);
-                document.getElementById('progressBar').style.width = progressPercentage + '%';
-                
-                // If the countdown is finished, show a message
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    document.getElementById('countdown').innerHTML = '<div style="color: var(--accent-color); font-weight: bold;">Maintenance complete! Reloading soon...</div>';
-                    document.getElementById('progressBar').style.width = '100%';
-                    
-                    // Simulate a reload (in a real scenario, you would check with your server)
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 5000);
-                }
-            }, 1000);
-            
-            // Animate progress bar on load
-            setTimeout(function() {
-                document.getElementById('progressBar').style.transition = 'width 1s ease';
-            }, 100);
-        });
-    </script>
 </body>
 </html>
