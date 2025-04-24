@@ -241,7 +241,7 @@ nav ul li a:hover::after {
 }
 
 .app-image {
-    height: 200px;
+    height: auto;
     overflow: hidden;
 }
 
