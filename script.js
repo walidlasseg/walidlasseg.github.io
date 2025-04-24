@@ -49,16 +49,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form submission
     const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Here you would typically send the form data to a server
-            // For this example, we'll just show an alert
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-    }
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_4lpoitb', 'template_i9gf0ym', this)
+            .then(function() {
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            }, function(error) {
+                alert('Oops! Something went wrong. Please try again later.');
+                console.error('EmailJS error:', error);
+            });
+    });
+}
     
     // Animation on scroll
     const animateOnScroll = function() {
