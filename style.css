@@ -209,10 +209,7 @@ nav ul li a:hover::after {
     margin-top: 2rem;
 }
 
-.hero-image img {
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-}
+
 
 /* Apps Section */
 .apps-section {
